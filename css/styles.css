@@ -78,6 +78,9 @@ header > .container {
 
 .link {
     color: var(--link-color);
+
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 li > .link {
@@ -87,19 +90,29 @@ li > .link {
 .link:hover,
 .link:focus {
     color: var(--link-hover);
-
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.link::after {
+.agencja-link::after {
+    content:"";
     display: block;
     position: absolute;
     width: 53px;
     height: 4px;
-    left: 453px;
-    top: 76px;
+    margin-top: 29.5px;
     
+    background: #2196F3;
+    border-radius: 2px;
+}
+
+.portfolio-link::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 58px;
+    height: 4px;
+
+    margin-top: 29px;
+
     background: #2196F3;
     border-radius: 2px;
 }
@@ -113,6 +126,12 @@ li > .link {
     margin-right: 0;
 }
 
+.contact,
+.contact svg {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .logo-icon {
     fill: #757575;
     margin-right: 10px;
@@ -124,9 +143,6 @@ li > .link {
 .contact:focus svg {
     color: var(--link-hover);
     fill: var(--link-hover);
-
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* TITTLE SECTION */
@@ -183,6 +199,8 @@ li > .link {
 
     width: 200px;
     height: 50px;
+
+    animation: data-modal-open;
 }
 
 /* FILTER SECTION */
@@ -206,6 +224,9 @@ li > .link {
 
     cursor: pointer;
     border: 0px;
+
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .click:hover,
@@ -213,9 +234,6 @@ li > .link {
     color: var(--button-hover);
     background-color: var(--link-hover);
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
-    
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter {
@@ -361,15 +379,18 @@ li > .link {
     fill: rgba(255, 255, 255, 0.1);
 }
 
+.social-list_link,
+.social-list_link svg {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .social-list_link:hover,
 .social-list_link:hover svg,
 .social-list_link:focus,
 .social-list_link:focus svg {
     background-color: #2196F3;
     fill: #ffffff;
-
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-icon {
@@ -420,14 +441,31 @@ li > .link {
 li > .projects-figure {
     width: 370px;
     height: 404px;
+
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    z-index: 1;
+}
+
+.window:hover {
+    display: flex;
+    flex-grow: 1;
+    position: inherit;
+    width: 370px;
+    height: 294px;
+    left: 215px;
+    top: 0px;
+    overlay: ;
+    z-index: 2;
+
+    background-color: rgba(33, 150, 243, 0.9);
+    cursor: pointer;
 }
 
 li>.projects-figure:hover {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px 
     rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
-
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-name {
@@ -481,15 +519,18 @@ li>.projects-figure:hover {
     border-style: solid;
 }
 
+.customers-list_link,
+.customers-list_link svg {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .customers-list_link:hover,
 .customers-list_link:hover svg,
 .customers-list_link:focus,
 .customers-list_link:focus svg {
     border-color: var(--customers-hover);
     fill: var(--customers-hover);
-
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers-icon {
@@ -585,4 +626,102 @@ footer > .container {
 
 .footer2 > ul > li > .social-list_link {
     margin-right: 10px;
+}
+
+/* MODAL SECTION */
+
+.backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes fadeInFromRight{
+    from {
+        left: 100%;
+        top: 100%;
+    }
+
+    to {
+        left: 50%;
+        top: 50%;
+    }
+}
+
+.fadeInFromRight {
+    animation-duration: 1000ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+    animation-delay: 500ms;
+}
+
+.fadeInFromRight {
+    animation-name: fadeInFromRight;
+}
+
+.modal {
+    position: absolute;
+    width:528px;
+    min-height: 581px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+   
+
+    transform-origin: bottom right;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+    transition-delay: 500ms;
+
+    background-color: #FFFFFF;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px; 
+
+
+}
+
+.modal::after {
+    transform: translate(-50%, -50%);
+    transform-origin: bottom right;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+    transition-delay: 500ms;
+}
+
+.close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+
+}
+
+.close-btn-svg {
+    width: 18px;
+    height: 18px;
+}
+
+.buton1 {
+    transform: translate(-50%, -50%);
+    transform-origin: bottom right;
+
 }
