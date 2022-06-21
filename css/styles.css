@@ -674,9 +674,8 @@ footer > .container {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    transform-origin: top left;
 
-    transition-property: transform, translate;
+    transition-property: transform;
     transition-duration: 250ms;
     transition-timing-function: ease-in-out;
     transition-delay: 100ms;
