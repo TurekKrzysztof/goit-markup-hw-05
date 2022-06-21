@@ -439,28 +439,46 @@ li > .link {
 }
 
 li > .projects-figure {
+    position: relative;
+    overflow: hidden;
     width: 370px;
     height: 404px;
 
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
-    z-index: 1;
+    cursor: pointer;
 }
 
-.window:hover {
+.overlay {
+    position: absolute;
+    z-index: 99;
     display: flex;
-    flex-grow: 1;
-    position: inherit;
+    align-items: center;
     width: 370px;
     height: 294px;
-    left: 215px;
-    top: 0px;
-    overlay: ;
-    z-index: 2;
-
     background-color: rgba(33, 150, 243, 0.9);
-    cursor: pointer;
+
+    transition-property: transform, translate;
+    transform: translatey(100%);
+    transition: transform 250ms ease;
+}
+
+.overlay > p {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.56;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+
+    margin-left: 24px;
+    margin-right: 45px;
+
+}
+
+.projects-figure:hover .overlay{
+    transform: translatey(0);
 }
 
 li>.projects-figure:hover {
@@ -469,9 +487,12 @@ li>.projects-figure:hover {
 }
 
 .project-name {
+    position: relative;
+    z-index: 100;
     font-weight: 700;
     font-size: 18px;
     line-height: 2;
+    background: #FFFFFF;
     /* identical to box height */
 
     letter-spacing: 0.06em;
@@ -479,7 +500,7 @@ li>.projects-figure:hover {
     padding-top: 20px;
     padding-left: 24px;
     padding-bottom: 20px;
-    margin-top: -4px;
+    margin-top: -5.5px;
 
     border-right: 1px solid #EEEEEE;
     border-bottom: 1px solid #EEEEEE;
@@ -646,30 +667,6 @@ footer > .container {
     pointer-events: none;
 }
 
-@keyframes fadeInFromRight{
-    from {
-        left: 100%;
-        top: 100%;
-    }
-
-    to {
-        left: 50%;
-        top: 50%;
-    }
-}
-
-.fadeInFromRight {
-    animation-duration: 1000ms;
-    animation-iteration-count: 1;
-    animation-fill-mode: both;
-    animation-timing-function: ease-in-out;
-    animation-delay: 500ms;
-}
-
-.fadeInFromRight {
-    animation-name: fadeInFromRight;
-}
-
 .modal {
     position: absolute;
     width:528px;
@@ -677,26 +674,16 @@ footer > .container {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-   
+    transform-origin: top left;
 
-    transform-origin: bottom right;
-    transition-duration: 500ms;
+    transition-property: transform, translate;
+    transition-duration: 250ms;
     transition-timing-function: ease-in-out;
-    transition-delay: 500ms;
+    transition-delay: 100ms;
 
     background-color: #FFFFFF;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px; 
-
-
-}
-
-.modal::after {
-    transform: translate(-50%, -50%);
-    transform-origin: bottom right;
-    transition-duration: 500ms;
-    transition-timing-function: ease-in-out;
-    transition-delay: 500ms;
 }
 
 .close-btn {
@@ -718,10 +705,4 @@ footer > .container {
 .close-btn-svg {
     width: 18px;
     height: 18px;
-}
-
-.buton1 {
-    transform: translate(-50%, -50%);
-    transform-origin: bottom right;
-
 }
